@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* This is good, keep it to prevent horizontal scroll */
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  /*
+    CORRECTION: The overflow properties have been removed from here.
+    This allows the body to grow naturally with its content and lets
+    the <html> element handle the single main scrollbar for the page.
+  */
+}
+
+/* Custom CSS for the coverflow effect */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Additional transform styles for smoother transitions */
+.transform-gpu {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .animate-flash {
+    animation: flash 1.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  }
+}
+
+/* Transparent header and background */
+.bg-hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Smooth transitions for header */
+.header-transition {
+  transition: all 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff6b35;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e55a2b;
+}
+
+/* Overlay styles */
+.overlay-dark {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes flash {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); /* orange-500 */
+  }
+  50% {
+    box-shadow: 0 0 0 0.75rem rgba(249, 115, 22, 0); /* a 12px ring */
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* Bright White Shimmering Border */
+@keyframes borderShimmerAnimation {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmering-white-border-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 2px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.shimmering-white-border-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.8) 45%,
+    rgb(255, 255, 255) 50%,
+    rgba(255, 255, 255, 0.8) 55%,
+    transparent 70%
+  );
+  background-size: 300% 100%;
+  animation: borderShimmerAnimation 3s linear infinite;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.shimmering-white-border-wrapper > button {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+/* Carousel specific fixes for mobile */
+@layer utilities {
+  .carousel-wrapper {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .carousel-container {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .carousel-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Mobile carousel full-width fix */
+  @media (max-width: 768px) {
+    .carousel-mobile-fullwidth {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+  }
+}
