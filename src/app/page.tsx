@@ -96,7 +96,6 @@ const packages: Package[] = [
       '**Electrical** - DB panel, switches, wiring, earthing. Etc',
       '**Plumbing** - Tap flow, leaks, pressure. Etc',
       '**Interior** - Tile work, paint finish, doors/windows. Etc',
-      '**German-Tech Wall Scanning**',
       '**Structural Integrity**',
       '**Identifying Damp Walls or Ceilings**',
       '**Floor Area Measurement** (as per RERA)',
@@ -129,7 +128,7 @@ const packages: Package[] = [
       '**Civil** - Wall finish, cracks, dampness, slope. Etc',
       '**Electrical** - DB panel, switches, wiring, earthing. Etc',
       '**Plumbing** - Tap flow, leaks, pressure. Etc',
-      '**Interior** - Tile work, paint finish, doors/windows. Etc',
+      '**Interior** - Tile work, paint finish, doors/windows, Marble Glossy Check. Etc',
       '**German-Tech Wall Scanning**',
       '**Structural Integrity**',
       '**Identifying Damp Walls or Ceilings**',
@@ -141,6 +140,10 @@ const packages: Package[] = [
       '**Material Measurement**',
       '**Borescope Deep Scan**',
       '**Thermal Scan** (US-German Tech)',
+      '**Gas Meter Check**',
+      '**Dedicated Inspection Manager**',
+      '**Repair Estimation Report**',
+      '**Premium Presentation Report**',
       '**Reinspection**'
     ] 
   },
