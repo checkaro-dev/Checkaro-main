@@ -49,17 +49,17 @@ const Footer: React.FC = () => {
     { 
       src: "/icons/facebook.png", 
       alt: "Facebook", 
-      href: "https://www.facebook.com/checkaro.india" 
+      href: "https://www.facebook.com/profile.php?id=61576993065560" 
     },
     { 
       src: "/icons/linkdin.png", 
       alt: "LinkedIn", 
-      href: "https://www.linkedin.com/in/checkaro-india-2192b6320/" 
+      href: "https://www.linkedin.com/in/checkaro-home-inspection-2192b6320" 
     },
     { 
       src: "/icons/instagram_rem_bg.png", 
       alt: "Instagram", 
-      href: "https://www.instagram.com/checkaro_india/" 
+      href: "https://www.instagram.com/checkaro_homeinspection?igsh=N2MxOTRqNnNoODQ4" 
     },
     { 
       src: "/icons/youtube_2.png", 
