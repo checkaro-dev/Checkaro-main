@@ -36,8 +36,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create a unique booking ID
-    const bookingId = `booking_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    // Generate unique booking ID with format: CH-[2 digits][1 letter][4 digits]
+    const generateBookingId = () => {
+      const twoDigits = Math.floor(Math.random() * 90 + 10); // 10-99
+      const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // A-Z
+      const fourDigits = Math.floor(Math.random() * 9000 + 1000); // 1000-9999
+      return `CH-${twoDigits}${letter}${fourDigits}`;
+    };
+    
+    let bookingId;
+    let isUnique = false;
+    
+    // Ensure uniqueness by checking against existing bookings
+    while (!isUnique) {
+      bookingId = generateBookingId();
+      const existingBooking = await redis.get(`booking:${bookingId}`);
+      if (!existingBooking) {
+        isUnique = true;
+      }
+    }
     console.log('Generated booking ID:', bookingId);
     
     // Create booking data object, allowing optional fields to be empty

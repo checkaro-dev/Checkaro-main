@@ -161,11 +161,13 @@ const AboutUsPage: React.FC = () => {
   ];
 
   const teamMembers: TeamMember[] = [
+    // First row: Rithwik, Praveen, Anitha
     { name: 'Rithwik', role: 'Senior principle consultant', initial: 'R', gradient: 'from-orange-400 to-orange-600' },
-    { name: 'Prakash', role: 'Inspector', initial: 'P', gradient: 'from-orange-600 to-yellow-500' },
-    { name: 'Chandrababu', role: 'Inspector', initial: 'C', gradient: 'from-teal-400 to-blue-500' },
-    { name: 'Anitha', role: 'Technical Head', initial: 'A', gradient: 'from-purple-400 to-pink-600' },
     { name: 'Praveen', role: 'Senior Principal Consultant', initial: 'P', gradient: 'from-blue-400 to-cyan-600' },
+    { name: 'Anitha', role: 'Technical Head', initial: 'A', gradient: 'from-purple-400 to-pink-600' },
+    // Second row: Chandrababu (Senior Inspector), Prakash, Nikhil
+    { name: 'Chandrababu', role: 'Senior Inspector', initial: 'C', gradient: 'from-teal-400 to-blue-500' },
+    { name: 'Prakash', role: 'Inspector', initial: 'P', gradient: 'from-orange-600 to-yellow-500' },
     { name: 'Nikhil', role: 'Inspector', initial: 'N', gradient: 'from-green-400 to-emerald-600' },
   ];
 
