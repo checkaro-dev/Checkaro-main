@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import DiwaliFloatingBanner from '@/components/DiwaliFloatingBanner'
 
 export const metadata: Metadata = {
   title: 'ChecKaro Home Inspection - Inspect Today, Secure Tomorrow',
@@ -27,6 +28,8 @@ export default function RootLayout({
       <body className="font-sans">
         <div className="min-h-screen">
           {children}
+          {/* Diwali Floating Banner */}
+          <DiwaliFloatingBanner />
         </div>
       </body>
     </html>
