@@ -395,6 +395,68 @@ const Home = () => {
     { number: "24", suffix: "/7", label: "Support Available", animated: false }
   ];
 
+// Diwali Banner that animates and shrinks/moves left on scroll
+function DiwaliBannerScrollEffect() {
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Calculate scale and position based on scroll
+  const minScale = 0.5;
+  const maxScale = 1;
+  const left = 30;
+  const scrollMax = 400;
+  const progress = Math.min(scrollY / scrollMax, 1);
+  const scale = maxScale - (maxScale - minScale) * progress;
+  const top = 220;
+
+  return (
+    <motion.div
+      animate={{
+        rotate: [0, 10, 0],
+        boxShadow: [
+          '0 0 0px 0px #ffa50000',
+          '0 0 80px 30px #ffa500cc',
+          '0 0 0px 0px #ffa50000'
+        ],
+        filter: [
+          'brightness(1) drop-shadow(0 0 0px #ffa500)',
+          'brightness(1.25) drop-shadow(0 0 40px #ffa500)',
+          'brightness(1) drop-shadow(0 0 0px #ffa500)'
+        ]
+      }}
+      transition={{
+        duration: 2.5,
+        repeat: Infinity,
+        ease: 'easeInOut'
+      }}
+      style={{
+        position: 'fixed',
+        top: `${top}px`,
+        left: `${left}px`,
+  zIndex: 50,
+        width: `${160 * scale}px`,
+        height: `${160 * scale}px`,
+        background: 'white',
+        borderRadius: '1.5rem',
+        boxShadow: '0 4px 32px #ffa50044',
+        border: '4px solid #ffa500',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        pointerEvents: 'none',
+      }}
+    >
+      <img src="/diwali_banner.svg" alt="Diwali Banner" style={{ width: `${144 * scale}px`, height: `${144 * scale}px`, objectFit: 'contain' }} />
+    </motion.div>
+  );
+}
+
+// ...existing code...
+
   return (
     <div className="min-h-screen bg-white relative border-b-0 overflow-x-hidden">
       <Navbar onBookingOpen={handleBookingOpen} />
@@ -403,6 +465,9 @@ const Home = () => {
       <DownloadModal isOpen={isDownloadModalOpen} onClose={() => setIsDownloadModalOpen(false)}/>
 
       <main className="transition-all duration-400" id="main-content">
+        {/* Diwali Banner SVG with Hover Effect */}
+        <DiwaliBannerScrollEffect />
+// ...existing code...
         {/* Hero Section */}
         <section 
           id="home" 

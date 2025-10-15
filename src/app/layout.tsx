@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
-import DiwaliFloatingBanner from '@/components/DiwaliFloatingBanner'
+// ...existing code...
 
 export const metadata: Metadata = {
   title: 'ChecKaro Home Inspection - Inspect Today, Secure Tomorrow',
@@ -23,15 +23,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    // Prevent horizontal scroll
-    <html lang="en" className="overflow-x-hidden">
-      <body className="font-sans">
-        <div className="min-h-screen">
-          {children}
-          {/* Diwali Floating Banner */}
-          <DiwaliFloatingBanner />
-        </div>
-      </body>
-    </html>
+      // Prevent horizontal scroll
+      <html lang="en" className="overflow-x-hidden">
+        <body className="font-sans">
+          <div className="min-h-screen">
+            {children}
+            // ...existing code...
+            // ...existing code...
+          </div>
+        </body>
+      </html>
   )
 }
