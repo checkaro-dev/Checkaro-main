@@ -396,6 +396,8 @@ const Home = () => {
   ];
 
 // Diwali Banner that animates and shrinks/moves left on scroll
+// Diwali Banner that animates and shrinks/moves left on scroll
+/*
 function DiwaliBannerScrollEffect() {
   const [scrollY, setScrollY] = useState(0);
   useEffect(() => {
@@ -437,7 +439,7 @@ function DiwaliBannerScrollEffect() {
         position: 'fixed',
         top: `${top}px`,
         left: `${left}px`,
-  zIndex: 50,
+        zIndex: 50,
         width: `${160 * scale}px`,
         height: `${160 * scale}px`,
         background: 'white',
@@ -454,6 +456,7 @@ function DiwaliBannerScrollEffect() {
     </motion.div>
   );
 }
+*/
 
 // ...existing code...
 
@@ -466,7 +469,7 @@ function DiwaliBannerScrollEffect() {
 
       <main className="transition-all duration-400" id="main-content">
         {/* Diwali Banner SVG with Hover Effect */}
-        <DiwaliBannerScrollEffect />
+        {/* <DiwaliBannerScrollEffect /> */}
 // ...existing code...
         {/* Hero Section */}
         <section 
