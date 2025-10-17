@@ -8,6 +8,16 @@ export const metadata: Metadata = {
     'Professional home inspection services for new homes, post-renovation, and rental properties. Certified professionals with detailed reports and affordable pricing.',
   keywords:
     'home inspection, property inspection, house inspection, rental inspection, renovation inspection',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },        // primary (Google)
+      { url: '/favicon-2025.ico' },   // bumped filename to break caches
+      // Optional PNG sizes if you add them in /public
+      // { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      // { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' }
+    ],
+    shortcut: '/favicon.ico',
+  }
 }
 
 export const viewport: Viewport = {
