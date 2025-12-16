@@ -89,35 +89,18 @@ const processSteps: ProcessStep[] = [
 
 const packages: Package[] = [
   { 
-    name: 'BASIC',
-    features: [
-      '**4 Point Inspection**',
-      '**Civil** - Wall finish, cracks, dampness, slope. Etc',
-      '**Electrical** - DB panel, switches, wiring, earthing. Etc',
-      '**Plumbing** - Tap flow, leaks, pressure. Etc',
-      '**Interior** - Tile work, paint finish, doors/windows. Etc',
-      '**Structural Integrity**',
-      '**Identifying Damp Walls or Ceilings**',
-      '**Floor Area Measurement** (as per RERA)',
-      '**Thermal Scan** (US-German Tech)'
-    ] 
-  },
-  { 
     name: 'STANDARD',
     features: [
       '**4 Point Inspection**',
       '**Civil** - Wall finish, cracks, dampness, slope. Etc',
-      '**Electrical** - DB panel, switches, wiring, earthing. Etc',
+      '**Electrical** - DB panel, switches, wiring Etc',
       '**Plumbing** - Tap flow, leaks, pressure. Etc',
-      '**Interior** - Tile work, paint finish, doors/windows. Etc',
-      '**German-Tech Wall Scanning**',
+      '**Finishing** - Tile work, paint, doors/windows.Etc',
       '**Structural Integrity**',
+      '**Bosch German-Tech Wall Scanning**',
       '**Identifying Damp Walls or Ceilings**',
-      '**Material Quality Check**',
-      '**Water Quality**',
-      '**Material Check**',
-      '**Floor Area Measurement** (as per RERA)',
-      '**Thermal Scan** (US-German Tech)'
+      '**Thermal Scan** (US-German Tech)',
+      '**Floor Area Measurement** (as per RERA)'
     ], 
     popular: true 
   },
@@ -126,24 +109,19 @@ const packages: Package[] = [
     features: [
       '**4 Point Inspection**',
       '**Civil** - Wall finish, cracks, dampness, slope. Etc',
-      '**Electrical** - DB panel, switches, wiring, earthing. Etc',
+      '**Electrical** - DB panel, switches, wiring Etc',
       '**Plumbing** - Tap flow, leaks, pressure. Etc',
-      '**Interior** - Tile work, paint finish, doors/windows, Marble Glossy Check. Etc',
-      '**German-Tech Wall Scanning**',
+      '**Finishing** - Tile work, paint, doors/windows.Etc',
       '**Structural Integrity**',
+      '**Bosch German-Tech Wall Scanning**',
       '**Identifying Damp Walls or Ceilings**',
-      '**Material Quality Check**',
-      '**Water Quality**',
-      '**Material Check**',
-      '**Material Brand Check**',
-      '**Floor Area Measurement** (as per RERA)',
-      '**Material Measurement**',
-      '**Borescope Deep Scan**',
       '**Thermal Scan** (US-German Tech)',
+      '**Floor Area Measurement** (as per RERA)',
+      '**Water Quality**',
+      '**Material Brand Check**',
+      '**Borescope Deep Scan**',
       '**Gas Meter Check**',
-      '**Dedicated Inspection Manager**',
       '**Repair Estimation Report**',
-      '**Premium Presentation Report**',
       '**Reinspection**'
     ] 
   },
@@ -871,7 +849,11 @@ function DiwaliBannerScrollEffect() {
                         whileInView={{ opacity: 1, y: 0 }} 
                         viewport={{ once: true }} 
                         transition={{ duration: 0.5, delay: index * 0.1 }} 
-                        className={`flex flex-col flex-shrink-0 bg-white rounded-lg shadow-md relative transition-all duration-300 ${pkg.popular ? 'border-2 border-orange-500 shadow-lg' : 'hover:shadow-lg'} w-72 max-w-[85vw]`}
+                        className={`flex flex-col flex-shrink-0 bg-white rounded-lg shadow-md relative transition-all duration-300 ${
+                          pkg.popular ? 'border-2 border-orange-500 shadow-lg' : 
+                          pkg.name === 'PREMIUM' ? 'border-2 border-yellow-500 shadow-lg' :
+                          'hover:shadow-lg'
+                        } w-72 max-w-[85vw]`}
                         style={{
                           scrollSnapAlign: 'start',
                           minHeight: '650px'
@@ -890,14 +872,18 @@ function DiwaliBannerScrollEffect() {
                             Most Popular
                           </div>
                         )}
-                        <div className={`bg-gradient-to-r from-orange-50 to-orange-100 p-3 text-center transition-all duration-300 rounded-t-lg ${pkg.popular ? 'pt-6' : 'pt-3'}`}>
+                        <div className={`bg-gradient-to-r ${
+                          pkg.name === 'PREMIUM' ? 'from-yellow-50 to-yellow-100' : 'from-orange-50 to-orange-100'
+                        } p-3 text-center transition-all duration-300 rounded-t-lg ${pkg.popular ? 'pt-6' : 'pt-3'}`}>
                           <h3 className="text-lg font-bold text-black mb-1">{pkg.name}</h3>
                         </div>
                         <div className="p-3 flex flex-col flex-grow">
                           <ul className="space-y-1.5 mb-4 flex-grow">
                             {pkg.features.map((feature, featureIndex) => (
                               <li key={featureIndex} className="flex items-start space-x-2">
-                                <CheckCircle className="text-orange-500 flex-shrink-0 mt-0.5" size={12} />
+                                <CheckCircle className={`${
+                                  pkg.name === 'PREMIUM' ? 'text-yellow-500' : 'text-orange-500'
+                                } flex-shrink-0 mt-0.5`} size={12} />
                                 <span className="text-black text-xs leading-relaxed break-words">
                                   {parseBoldText(feature)}
                                 </span>
@@ -906,7 +892,11 @@ function DiwaliBannerScrollEffect() {
                           </ul>
                           <button 
                             onClick={handleBookingOpen} 
-                            className={`w-full mt-auto py-2 px-2 rounded-md text-sm font-semibold transition-all duration-300 ${pkg.popular? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 shadow-sm' : 'border-2 border-orange-500 text-orange-600 hover:bg-orange-50'}`}
+                            className={`w-full mt-auto py-2 px-2 rounded-md text-sm font-semibold transition-all duration-300 ${
+                              pkg.popular ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 shadow-sm' :
+                              pkg.name === 'PREMIUM' ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white hover:from-yellow-600 hover:to-yellow-700 shadow-sm' :
+                              'border-2 border-orange-500 text-orange-600 hover:bg-orange-50'
+                            }`}
                           >
                             Choose {pkg.name}
                           </button>
@@ -923,7 +913,7 @@ function DiwaliBannerScrollEffect() {
 
             {/* Desktop View */}
             <motion.div 
-              className="hidden md:grid md:grid-cols-3 gap-6" 
+              className="hidden md:grid md:grid-cols-2 gap-6 max-w-4xl mx-auto" 
               variants={staggerContainer} 
               initial="hidden" 
               whileInView="visible" 
@@ -933,21 +923,29 @@ function DiwaliBannerScrollEffect() {
                 <motion.div 
                   key={index} 
                   variants={staggerItem} 
-                  className={`flex flex-col bg-white rounded-lg shadow-md relative overflow-hidden transition-all duration-300 transform ${pkg.popular ? 'border-2 border-orange-500 md:scale-105 hover:scale-110 md:hover:scale-110' : 'hover:shadow-lg hover:scale-105'}`}
+                  className={`flex flex-col bg-white rounded-lg shadow-md relative overflow-hidden transition-all duration-300 transform ${
+                    pkg.popular ? 'border-2 border-orange-500 md:scale-105 hover:scale-110 md:hover:scale-110' :
+                    pkg.name === 'PREMIUM' ? 'border-2 border-yellow-500 md:scale-105 hover:scale-110 md:hover:scale-110' :
+                    'hover:shadow-lg hover:scale-105'
+                  }`}
                 >
                   {pkg.popular && (
                     <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md z-20 border-2 border-white mt-2">
                       Most Popular
                     </div>
                   )}
-                  <div className={`bg-gradient-to-r from-orange-50 to-orange-100 p-4 text-center transition-all duration-300 ${pkg.popular ? 'pt-6' : 'pt-4'}`}>
+                  <div className={`bg-gradient-to-r ${
+                    pkg.name === 'PREMIUM' ? 'from-yellow-50 to-yellow-100' : 'from-orange-50 to-orange-100'
+                  } p-4 text-center transition-all duration-300 ${pkg.popular ? 'pt-6' : 'pt-4'}`}>
                     <h3 className="text-xl font-bold text-black mt-2 mb-2">{pkg.name}</h3>
                   </div>
                   <div className="p-4 flex flex-col flex-grow">
                     <ul className="space-y-2 mb-6 flex-grow">
                       {pkg.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-start space-x-2 transition-all duration-300 transform hover:translate-x-1 hover:text-gray-900">
-                          <CheckCircle className="text-orange-500 flex-shrink-0 mt-1.5" size={14} />
+                          <CheckCircle className={`${
+                            pkg.name === 'PREMIUM' ? 'text-yellow-500' : 'text-orange-500'
+                          } flex-shrink-0 mt-1.5`} size={14} />
                           <span className="text-black text-base leading-relaxed">
                             {parseBoldText(feature)}
                           </span>
@@ -956,7 +954,11 @@ function DiwaliBannerScrollEffect() {
                     </ul>
                     <button 
                       onClick={handleBookingOpen} 
-                      className={`w-full mt-auto py-2 px-3 rounded-md text-lg font-semibold transition-all duration-300 transform active:scale-95 ${pkg.popular ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 hover:shadow-md hover:scale-105 shadow-sm' : 'border-2 border-orange-500 text-orange-600 hover:bg-orange-50 hover:shadow-sm hover:scale-105 hover:border-orange-600'}`}
+                      className={`w-full mt-auto py-2 px-3 rounded-md text-lg font-semibold transition-all duration-300 transform active:scale-95 ${
+                        pkg.popular ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 hover:shadow-md hover:scale-105 shadow-sm' :
+                        pkg.name === 'PREMIUM' ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white hover:from-yellow-600 hover:to-yellow-700 hover:shadow-md hover:scale-105 shadow-sm' :
+                        'border-2 border-orange-500 text-orange-600 hover:bg-orange-50 hover:shadow-sm hover:scale-105 hover:border-orange-600'
+                      }`}
                     >
                       Choose {pkg.name}
                     </button>
