@@ -48,14 +48,19 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose }) => {
     console.log('API endpoint will be:', '/api/download-sample');
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+
       const response = await fetch('/api/download-sample', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        signal: controller.signal,
       });
 
+      clearTimeout(timeoutId);
       console.log('Response status:', response.status);
       console.log('Response ok:', response.ok);
 
@@ -87,9 +92,14 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose }) => {
         setSubmitMessage(data.message || 'Failed to process download. Please try again.');
       }
     } catch (error) {
-      console.error('=== FETCH ERROR ===');
-      console.error('Error submitting download request:', error);
-      setSubmitMessage('Network error. Please check your connection and try again.');
+      if (error instanceof Error && error.name === 'AbortError') {
+        console.error('Request timeout');
+        setSubmitMessage('Request took too long. Please try again.');
+      } else {
+        console.error('=== FETCH ERROR ===');
+        console.error('Error submitting download request:', error);
+        setSubmitMessage('Network error. Please check your connection and try again.');
+      }
     } finally {
       setIsSubmitting(false);
     }
