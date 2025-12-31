@@ -3,6 +3,7 @@ import './globals.css'
 // ...existing code...
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://checkaro.in'),
   title: 'ChecKaro Home Inspection - Inspect Today, Secure Tomorrow',
   description:
     'Professional home inspection services for new homes, post-renovation, and rental properties. Certified professionals with detailed reports and affordable pricing.',
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
     siteName: 'ChecKaro',
     images: [
       {
-        url: '/CheckKaro_Logo.png',
+        url: 'https://checkaro.in/CheckKaro_Logo.png',
         width: 1200,
         height: 630,
         alt: 'ChecKaro Home Inspection Logo',
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ChecKaro Home Inspection',
     description: 'Professional home inspection services in Hyderabad',
-    images: ['/CheckKaro_Logo.png'],
+    images: ['https://checkaro.in/CheckKaro_Logo.png'],
   },
   icons: {
     icon: [
