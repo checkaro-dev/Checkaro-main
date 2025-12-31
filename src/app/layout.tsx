@@ -33,11 +33,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: '/CheckKaro_Logo.png', sizes: 'any', type: 'image/png' },
       { url: '/Checkaro Logo.svg', type: 'image/svg+xml' },
       { url: '/CheckKaro_Logo.png', sizes: '192x192', type: 'image/png' },
-      { url: '/favicon.ico' },
     ],
-    shortcut: '/Checkaro Logo.svg',
+    shortcut: '/CheckKaro_Logo.png',
     apple: '/CheckKaro_Logo.png',
   }
 }
