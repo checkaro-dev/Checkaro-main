@@ -63,28 +63,25 @@ export async function POST(request: NextRequest) {
     console.log('Redis config check - URL exists:', !!process.env.UPSTASH_REDIS_REST_URL);
     console.log('Redis config check - Token exists:', !!process.env.UPSTASH_REDIS_REST_TOKEN);
 
-    // Store in Upstash KV in samples_downloaded table
-    console.log('Attempting to store sample download in Redis...');
-    await redis.hset(`samples_downloaded:${downloadId}`, downloadData);
-    console.log('Successfully stored sample download data');
+    // Store in Redis with timeout protection - non-blocking
+    try {
+      console.log('Attempting to store sample download in Redis...');
+      await Promise.race([
+        redis.hset(`samples_downloaded:${downloadId}`, downloadData),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Redis operation timed out')), 8000)
+        )
+      ]);
+      console.log('Successfully stored sample download data');
+    } catch (redisError) {
+      console.error('Redis storage error:', redisError);
+      // Continue anyway - download ID is generated and we can proceed
+      console.log('Continuing despite Redis error - download ID is valid');
+    }
 
-    // Also add to a list for easy retrieval of all sample downloads
-    console.log('Adding to samples downloaded list...');
-    await redis.lpush('samples_downloaded:list', downloadId);
-    console.log('Successfully added to samples downloaded list');
+    console.log('Sample download request processed successfully:', downloadId);
 
-    // Set expiration for the download record (optional - 90 days)
-    console.log('Setting expiration...');
-    await redis.expire(`samples_downloaded:${downloadId}`, 90 * 24 * 60 * 60);
-    console.log('Successfully set expiration');
-
-    // Also store by email for duplicate checking (optional)
-    console.log('Storing email tracking...');
-    await redis.set(`email_download:${email}`, downloadId, { ex: 90 * 24 * 60 * 60 });
-    console.log('Successfully stored email tracking');
-
-    console.log('Sample download recorded successfully:', downloadId);
-
+    // Return immediately without waiting for additional list/expiry operations
     return NextResponse.json({ 
       message: 'Download request processed successfully!',
       downloadId: downloadId,

@@ -45,14 +45,19 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
     setSubmitMessage('');
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+
       const response = await fetch('/api/booking', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        signal: controller.signal,
       });
 
+      clearTimeout(timeoutId);
       const data = await response.json();
 
       if (response.ok) {
@@ -73,8 +78,12 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
         setSubmitMessage(data.message || 'Failed to submit booking. Please try again.');
       }
     } catch (error) {
-      console.error('Error submitting booking:', error);
-      setSubmitMessage('Network error. Please check your connection and try again.');
+      if (error instanceof Error && error.name === 'AbortError') {
+        setSubmitMessage('Request took too long. Please try again.');
+      } else {
+        console.error('Error submitting booking:', error);
+        setSubmitMessage('Network error. Please check your connection and try again.');
+      }
     } finally {
       setIsSubmitting(false);
     }

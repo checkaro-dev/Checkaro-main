@@ -8,15 +8,37 @@ export const metadata: Metadata = {
     'Professional home inspection services for new homes, post-renovation, and rental properties. Certified professionals with detailed reports and affordable pricing.',
   keywords:
     'home inspection, property inspection, house inspection, rental inspection, renovation inspection',
+  openGraph: {
+    title: 'ChecKaro Home Inspection - Inspect Today, Secure Tomorrow',
+    description: 'Professional home inspection services in Hyderabad. Detect issues early, save money, live stress-free.',
+    url: 'https://checkaro.in',
+    siteName: 'ChecKaro',
+    images: [
+      {
+        url: '/CheckKaro_Logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'ChecKaro Home Inspection Logo',
+        type: 'image/png',
+      },
+    ],
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ChecKaro Home Inspection',
+    description: 'Professional home inspection services in Hyderabad',
+    images: ['/CheckKaro_Logo.png'],
+  },
   icons: {
     icon: [
-      { url: '/favicon.ico' },        // primary (Google)
-      { url: '/favicon-2025.ico' },   // bumped filename to break caches
-      // Optional PNG sizes if you add them in /public
-      // { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      // { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' }
+      { url: '/Checkaro Logo.svg', type: 'image/svg+xml' },
+      { url: '/CheckKaro_Logo.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico' },
     ],
-    shortcut: '/favicon.ico',
+    shortcut: '/Checkaro Logo.svg',
+    apple: '/CheckKaro_Logo.png',
   }
 }
 
