@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     siteName: 'ChecKaro',
     images: [
       {
-        url: 'https://checkaro.in/CheckKaro_Logo.png',
+        url: 'https://checkaro.in/checkaro-og-image.png',
         width: 1200,
-        height: 630,
+        height: 1200,
         alt: 'ChecKaro Home Inspection Logo',
         type: 'image/png',
       },
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ChecKaro Home Inspection',
     description: 'Professional home inspection services in Hyderabad',
-    images: ['https://checkaro.in/CheckKaro_Logo.png'],
+    images: ['https://checkaro.in/checkaro-og-image.png'],
   },
   icons: {
     icon: [
